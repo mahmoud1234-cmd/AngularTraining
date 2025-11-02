@@ -1,0 +1,68 @@
+<div class="container py-4">
+  <h2 class="mb-3">Liste des événements</h2>
+
+  <!-- Recherche -->
+  <input
+    type="text"
+    class="form-control mb-4"
+    placeholder="Rechercher un événement"
+  />
+
+  <div class="row g-3">
+    <div *ngFor="let event of list" class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img
+          [src]="event.imageUrl"
+          class="card-img-top img-fluid"
+          style="height: 200px; object-fit: cover"
+        />
+
+        <div class="card-body">
+          <!-- 🔗 Lien vers la page détail -->
+          <h5 class="card-title">
+            <a
+              [routerLink]="['./detail-event', event.id]"
+              class="text-decoration-none"
+            >
+              {{ event.title }}
+            </a>
+          </h5>
+
+          <p class="text-muted">{{ event.price }}</p>
+          <p>{{ event.date | date : "medium" }}</p>
+          <p class="fw-bold">{{ event.location }}</p>
+          <p>{{ event.description }}</p>
+
+          <!-- Boutons fonctionnels avec espace -->
+          <button
+            class="btn btn-sm btn-primary me-2"
+            (click)="likeEvent(event)"
+          >
+            👍 Like
+          </button>
+          <button
+            class="btn btn-sm btn-success"
+            (click)="reserveEvent(event)"
+            [disabled]="event.nbrPlaces === 0"
+          >
+            Reserved
+          </button>
+
+          <span class="ms-2">
+            {{ event.nbrLikes }} ❤️ | {{ event.nbrPlaces }} 🎫
+          </span>
+
+          <!-- 🔗 Bouton "Voir détails" -->
+          <div class="mt-3">
+            <a
+              [routerLink]="['./detail-event', event.id]"
+              class="btn btn-outline-secondary btn-sm"
+            >
+              Voir détails →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

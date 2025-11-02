@@ -7,7 +7,11 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
-import { ListTicketComponent } from './layout/list-ticket/list-ticket.component';
+import { ListTicketComponent } from './features/tickets/list-ticket/list-ticket.component';
+import { FormsModule } from '@angular/forms';
+import { ListEventComponent } from './features/events/list-event/list-event.component';
+import { DatePersPipe } from './shared/date-pers.pipe';
+import { EventsModule } from './features/events/events.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,11 @@ import { ListTicketComponent } from './layout/list-ticket/list-ticket.component'
     FooterComponent,
     HomeComponent,
     NotFoundComponent,
-    ListTicketComponent
+
+    DatePersPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, EventsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
